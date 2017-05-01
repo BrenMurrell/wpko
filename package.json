@@ -1,0 +1,16 @@
+{
+  "name": "wpko",
+  "version": "1.0.0",
+  "description": "knockout wordpress testing",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "knockout",
+    "wordpress",
+    "js"
+  ],
+  "author": "BP Murrell",
+  "license": "ISC"
+}
