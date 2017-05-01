@@ -1,5 +1,5 @@
 function WPKOModel() {
-  var baseUrl = "https://public-api.wordpress.com/rest/v1.1/sites/theweirdoandthebeardo.wordpress.com/posts/?number=7&page=",
+  var baseUrl = "https://public-api.wordpress.com/rest/v1.1/sites/blog.moon.co.nz/posts/?number=7&page=",
     currentPage = 1,
     postCount = 0,
     postsPerPage = 7;
@@ -40,7 +40,6 @@ function WPKOModel() {
   }
   self.getPrev = function() {
     //if(currentPage > 1) {
-      self.canPrev(true);
       currentPage -= 1;
       console.log(currentPage);
       self.updatePosts();
@@ -52,11 +51,13 @@ function WPKOModel() {
       console.log(data);
       self.posts(data.posts);
       postCount = data.found;
-      console.log("post count", postCount)
+      //console.log("post count", postCount)
     });
   }
   showPost = function(data) {
     console.log(data);
+
+
     self.title(data.title);
     self.content(data.content);
     self.author(data.author.name);
