@@ -1,21 +1,34 @@
 function WPKOModel() {
-  var baseUrl = "https://public-api.wordpress.com/rest/v1.1/sites/blog.moon.co.nz/posts/?number=7&page=",
+  var baseUrl = "https://public-api.wordpress.com/rest/v1.1/sites/theweirdoandthebeardo.wordpress.com/posts/?number=7&page=",
+  //var baseUrl = "https://public-api.wordpress.com/wp/v2/sites/theweirdoandthebeardo.wordpress.com/posts/?number=7&page=",
     currentPage = 1,
     postCount = 0,
     postsPerPage = 7;
 
   self = this;
 
-  self.test = ko.observable("test");
-  self.testBackup = ko.pureComputed(function() {
-    return self.test();
+  self.searchString = ko.observable();
+  //throttled version of input to ping wordpress api after typing.
+  self.searchDo = ko.computed(function() {
+    // read: function () {
+    //   console.log("search string: ", self.searchString);
+    // },
+    // write: function (value) {
+    //     console.log("value: ", value)
+    // },
+    // owner: self
+    return self.searchString();
   }).extend({ throttle: 500 });
+
+
+
   self.posts = ko.observableArray();
 
   self.title = ko.observable();
   self.content = ko.observable();
   self.date = ko.observable();
   self.author = ko.observable();
+  self.authorData = ko.observableArray();
   self.avatar_URL = ko.observable();
 
   self.canNext = ko.pureComputed(function() {
@@ -48,7 +61,7 @@ function WPKOModel() {
 
   self.updatePosts = function() {
     $.getJSON(baseUrl + currentPage, function(data) {
-      console.log(data);
+      console.log("data", data);
       self.posts(data.posts);
       postCount = data.found;
       //console.log("post count", postCount)
@@ -56,13 +69,10 @@ function WPKOModel() {
   }
   showPost = function(data) {
     console.log(data);
-
-
     self.title(data.title);
     self.content(data.content);
-    self.author(data.author.name);
     self.date(data.date)
-    self.avatar_URL(data.author.avatar_URL)
+    self.author(data.author);
     //count = data.posts
   }
 
