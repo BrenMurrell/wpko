@@ -7,26 +7,38 @@
   </head>
   <body>
     <h1>knockout testing</h1>
-    <input data-bind="input: searchString">
+    <input data-bind="value: searchString, valueUpdate: 'keyup'">
+    <!-- <p data-bind="text: currentPage"></p>
+    <p data-bind="text: maxPage"></p>
+    <p data-bind="text: postsUrl"></p>
+    <p data-bind="text: canNext"></p> -->
+    <p>Showing posts
+      <span data-bind="text: fromPost"></span>
+      to
+      <span data-bind="text: toPost"></span>
+      of
+      <span data-bind="text: postCount"></span>
+    </p>
     <div id="app">
       <div id="nav" style="width: 25%; float: left;">
-<!--
-        <input type="text" data-bind="textInput: test" />
-        <p data-bind="text: test"></p>
-        <p data-bind="text: testBackup"></p> -->
         <ul data-bind="foreach: posts">
           <li><a href="javascript:" data-bind="text: title, click: showPost"></a></li>
           <!-- <li data-text="text: title"></li> -->
         </ul>
-        <input type="button" value="previous" data-bind="click: getPrev">
-        <input type="button" value="next" data-bind="click: getNext">
+        <!-- ko if: canPrev -->
+          <input type="button" value="previous" data-bind="click: getPrev">
+        <!-- /ko -->
+        <!-- ko if: canNext -->
+          <input type="button" value="next" data-bind="click: getNext">
+        <!-- /ko -->
       </div>
-      <div id="content" style="width: 60%; float: left;">
+      <div id="post" style="width: 60%; float: left;">
         <div data-bind="with: author">
-          <img data-bind="attr: { src: avatar_URL }" style="float:left;" >
+          <img data-bind="attr: { src: avatar_URL }" style="float:right;" >
           <p data-bind="text: name"></p>
         </div>
         <h2 data-bind="text: title"></h2>
+
         <h4><span data-bind="text: date"></span></h4>
         <div data-bind="html: content" style="clear: both;"></div>
       </div>
