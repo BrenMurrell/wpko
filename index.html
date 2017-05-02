@@ -3,9 +3,41 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
   </head>
   <body>
     <h1>knockout testing</h1>
+    <input data-bind="input: searchString">
+    <div id="app">
+      <div id="nav" style="width: 25%; float: left;">
+<!--
+        <input type="text" data-bind="textInput: test" />
+        <p data-bind="text: test"></p>
+        <p data-bind="text: testBackup"></p> -->
+        <ul data-bind="foreach: posts">
+          <li><a href="javascript:" data-bind="text: title, click: showPost"></a></li>
+          <!-- <li data-text="text: title"></li> -->
+        </ul>
+        <input type="button" value="previous" data-bind="click: getPrev">
+        <input type="button" value="next" data-bind="click: getNext">
+      </div>
+      <div id="content" style="width: 60%; float: left;">
+        <div data-bind="with: author">
+          <img data-bind="attr: { src: avatar_URL }" style="float:left;" >
+          <p data-bind="text: name"></p>
+        </div>
+        <h2 data-bind="text: title"></h2>
+        <h4><span data-bind="text: date"></span></h4>
+        <div data-bind="html: content" style="clear: both;"></div>
+      </div>
+    </div>
   </body>
-  <script type="text/javascript" src="/node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js">
+
+  </script>
+  <script type="text/javascript" src="js/app.js">
+
+  </script>
 </html>
