@@ -1,6 +1,5 @@
 function PostsModel($rootModel) {
   self = this;
-  self.title2 = ko.observable("test title for posts model");
   self.currentPage = ko.observable(1);
   self.posts = ko.observableArray();
 
@@ -19,7 +18,8 @@ function PostsModel($rootModel) {
     $.getJSON(self.postsUrl() + "&pretty=true", function(data) {
       console.log("data", data);
       //console.log(self.postsUrl());
-      ko.mapping.fromJS(data, {}, self);
+      //ko.mapping.fromJS(data, {}, self);
+      self.posts(data.posts);
       //self.posts(data.posts);
       //self.postCount(data.found);
       //console.log("post count", postCount)
@@ -29,9 +29,3 @@ function PostsModel($rootModel) {
   self.getPosts();
 
 }
-// $(function () {
-//     var viewModel = new AppModel();
-//     ko.applyBindings(viewModel, $("#app")[0]);
-//     //viewModel.initialisePage();
-//     //viewModel.reloadPage({ isInitialisePage: true, isGetInventory: false });
-// });

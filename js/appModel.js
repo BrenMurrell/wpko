@@ -11,6 +11,7 @@ function AppModel() {
     console.log("init");
   }
   self.PostsModel = new PostsModel(self);
+  self.SinglePostModel = new SinglePostModel(self);
 }
 $(function () {
     var viewModel = new AppModel();
