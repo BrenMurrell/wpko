@@ -4,7 +4,7 @@ function PostsModel($rootModel) {
   //var postsList = [];
   self.data = ko.observableArray();
   self.Url = ko.observable($rootModel.baseUrl() + "posts/");
-
+  self.posts = ko.observableArray();
   self.postsUrl = ko.pureComputed(function() {
     if($rootModel.searchString()) {
       return self.Url() + "?page=" + self.currentPage() + "&number=" + $rootModel.postsPerPage() + "&search=" + $rootModel.searchString();
@@ -19,8 +19,8 @@ function PostsModel($rootModel) {
       console.log("data", data);
       //console.log(self.postsUrl());
       //ko.mapping.fromJS(data, {}, self.data());
-      s
       // postsList = data.posts;
+      self.posts(data.posts);
       console.log("posts",data.posts);
       // console.log("postsList",postsList);
       //self.posts(data.posts);
