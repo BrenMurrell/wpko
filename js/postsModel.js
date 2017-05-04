@@ -1,8 +1,8 @@
 function PostsModel($rootModel) {
   self = this;
   self.currentPage = ko.observable(1);
-  self.posts = ko.observableArray();
-
+  //var postsList = [];
+  self.data = ko.observableArray();
   self.Url = ko.observable($rootModel.baseUrl() + "posts/");
 
   self.postsUrl = ko.pureComputed(function() {
@@ -18,8 +18,11 @@ function PostsModel($rootModel) {
     $.getJSON(self.postsUrl() + "&pretty=true", function(data) {
       console.log("data", data);
       //console.log(self.postsUrl());
-      //ko.mapping.fromJS(data, {}, self);
-      self.posts(data.posts);
+      //ko.mapping.fromJS(data, {}, self.data());
+      s
+      // postsList = data.posts;
+      console.log("posts",data.posts);
+      // console.log("postsList",postsList);
       //self.posts(data.posts);
       //self.postCount(data.found);
       //console.log("post count", postCount)
