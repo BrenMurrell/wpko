@@ -37,9 +37,11 @@
   </body>
 
   <script type="text/html" id="posts-template">
+    <!-- <span data-bind="text: postsUrl"></span>
     <ul data-bind="foreach: posts">
         <li><a href="javascript:" data-bind="text: title"></a></li>
     </ul>
+    <pre data-bind="posts"></pre> -->
   </script>
 
   <script type="text/html" id="single-post-template">
@@ -59,9 +61,11 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-debug.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.4.1/knockout.mapping.min.js"></script>
+  <script type="text/javascript" src="js/apiModel.js"></script>
+  <script type="text/javascript" src="js/appModel.js"></script>
+
   <script type="text/javascript" src="js/postsModel.js"></script>
   <script type="text/javascript" src="js/singlePostModel.js"></script>
-  <script type="text/javascript" src="js/appModel.js"></script>
 
   <!-- <script type="text/javascript" src="js/app.js"></script> -->
 </html>

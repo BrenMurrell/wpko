@@ -4,7 +4,13 @@ function PostsModel($rootModel) {
   //var postsList = [];
   self.data = ko.observableArray();
   self.Url = ko.observable($rootModel.baseUrl() + "posts/");
-  self.posts = ko.observableArray();
+  self.getPostsList = function() {
+    return ["test","two"];
+  };
+  self.postList = ko.observableArray(self.getPostsList());
+
+
+
   self.postsUrl = ko.pureComputed(function() {
     if($rootModel.searchString()) {
       return self.Url() + "?page=" + self.currentPage() + "&number=" + $rootModel.postsPerPage() + "&search=" + $rootModel.searchString();
@@ -13,22 +19,33 @@ function PostsModel($rootModel) {
     }
   });
 
-  // var posts = ko.mapping.fromJS()
-  self.getPosts = function() {
-    $.getJSON(self.postsUrl() + "&pretty=true", function(data) {
-      console.log("data", data);
-      //console.log(self.postsUrl());
-      //ko.mapping.fromJS(data, {}, self.data());
-      // postsList = data.posts;
-      self.posts(data.posts);
-      console.log("posts",data.posts);
-      // console.log("postsList",postsList);
-      //self.posts(data.posts);
-      //self.postCount(data.found);
-      //console.log("post count", postCount)
-    });
-  };
+
+  // self.getLatestPosts = function() {
+  //   $rootModel.Api.getPosts(
+  //     self.postsUrl(),
+  //     function (jqXhr) {
+  //         //success
+  //         // $("#emailPinModal").modal("hide");
+  //         // $rootModel.SuccessOrErrorModel
+  //         //     .displaySuccessMessage("Email sent", "An email containing your PIN has been sent.");
+  //         // self.isSendingEmail(false);
+  //         console.log('success');
+  //     },
+  //     function (jqXhr, textStatus) {
+  //         //failure
+  //         // self.sendPinError("Something went wrong, please try again soon (" + textStatus + ").");
+  //         // $("#pinEmail").closest(".field").addClass("error");
+  //         // self.isSendingEmail(false);
+  //         console.log('failure');
+  //     });
+  // }
+
+  //self.getLatestPosts();
+
+
+  //self.posts = ko.observableArray(self.getPosts());
+
   //init
-  self.getPosts();
+  //self.getPosts();
 
 }

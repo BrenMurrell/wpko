@@ -6,11 +6,14 @@ function AppModel() {
   self.title = ko.observable("test title");
   self.postsPerPage = ko.observable(10);
   self.searchString = ko.observable();
-  self.posts = ko.observableArray();
+  //self.posts = ko.observableArray();
   self.init = function() {
     console.log("init");
   }
+  //self.Api = new ApiUtilityModel(self);
+
   self.PostsModel = new PostsModel(self);
+
   //self.SinglePostModel = new SinglePostModel(self);
 }
 $(function () {
